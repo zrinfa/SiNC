@@ -1,0 +1,29 @@
+# =============================================================
+# .htaccess untuk public_html (diletakkan di samping index.html)
+# Frontend React + backend PHP di subfolder /api.
+# =============================================================
+Options -Indexes
+RewriteEngine On
+
+# File LKPD (PDF) guru disimpan backend di public_html/api/uploads.
+# Link dari aplikasi memakai /uploads/..., jadi diteruskan ke sana.
+RewriteRule ^uploads/(.+)$ api/uploads/$1 [L]
+
+# Router SPA: apa pun yang bukan file/folder asli dibuka lewat index.html.
+# Route /api tidak disentuh karena sudah ditangani public_html/api/.htaccess.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/api/
+RewriteRule ^ index.html [L]
+
+# Proteksi file tersembunyi di level root juga
+<FilesMatch "^\.env">
+  Require all denied
+</FilesMatch>
+
+# Folder sql/ ikut ter-upload bila seluruh cPanel/ yang di drag.
+# Struktur database tidak boleh bisa diunduh dari browser.
+<FilesMatch "\.(sql|txt|md)$">
+  Require all denied
+</FilesMatch>
+RewriteRule ^sql/ - [F,L]
