@@ -1,0 +1,32 @@
+# Dependensi dan hasil build
+node_modules/
+dist/
+build/
+
+# Berkas lingkungan dan kredensial hosting (JANGAN pernah di-commit)
+.env
+.env.local
+.env.*.local
+backend-php/uploads/*
+!backend-php/uploads/.htaccess
+cPanel/
+
+# Arsip paket
+*.zip
+
+# Log dan berkas sistem
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# Editor dan IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Cache Node
+.cache/
+.parcel-cache/
