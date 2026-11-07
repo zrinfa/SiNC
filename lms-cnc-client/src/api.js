@@ -1,51 +1,70 @@
 // =============================================================
-// api.js - klien REST backend PHP + mesin simulasi G-Code.
-// Engine ini HARUS paritas dengan backend-php/lib/GCode.php:
-// G00/G01/G02/G03/G90/G91, X=diameter, rapid-check per titik.
-// Konvensi busur: I = offset pusat searah X (radius-mm),
-// K = offset searah Z menjauhi chuck (mm).
+// api.js - klien REST Firebase Serverless + mesin simulasi G-Code.
+// Menggunakan Firestore, Firebase Auth, dan Firebase Storage.
 // =============================================================
-const BASE = import.meta.env.VITE_API_URL || '';
+import { handleFirebaseApi } from './firebaseApi.js';
 
 export function authHeaders() {
   const t = localStorage.getItem('token');
   return t ? { Authorization: 'Bearer ' + t } : {};
 }
-function fail(res, data) {
-  const e = new Error(data.error || data.message || 'Permintaan gagal');
-  e.status = res.status;
-  throw e;
-}
+
 export async function api(path, opts = {}) {
-  const res = await fetch(BASE + path, {
-    ...opts,
-    headers: { 'Content-Type': 'application/json', ...authHeaders(), ...(opts.headers || {}) }
-  });
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) fail(res, data);
-  return data;
-}
-// unggah multipart (materi, lkpd)
-export async function apiForm(path, fd, method = 'POST') {
-  const res = await fetch(BASE + path, { method, headers: authHeaders(), body: fd });
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) fail(res, data);
-  return data;
-}
-// unduh berkas dari API dengan header Authorization (CSV rekap nilai)
-export async function unduhBerkas(path, namaBerkas) {
-  const res = await fetch(BASE + path, { headers: authHeaders() });
-  if (!res.ok) {
-    const data = await res.json().catch(() => ({}));
-    fail(res, data);
+  try {
+    return await handleFirebaseApi(path, opts);
+  } catch (err) {
+    console.error('API Error:', path, err);
+    throw err;
   }
-  const url = URL.createObjectURL(await res.blob());
-  const a = document.createElement('a');
-  a.href = url; a.download = namaBerkas;
-  document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 2000);
 }
-export const urlBerkas = (p) => (p ? BASE + p : null);
+
+// unggah multipart (materi, lkpd) ke Firebase Storage
+export async function apiForm(path, fd, method = 'POST') {
+  try {
+    return await handleFirebaseApi(path, { method }, fd);
+  } catch (err) {
+    console.error('API Form Error:', path, err);
+    throw err;
+  }
+}
+
+// unduh berkas (CSV rekap nilai langsung di-generate di browser)
+export async function unduhBerkas(path, namaBerkas) {
+  if (path.includes('/api/export/nilai')) {
+    const urlObj = new URL(path, window.location.origin);
+    const kelasId = urlObj.searchParams.get('kelas_id');
+    const data = await handleFirebaseApi(`/api/kelas/${kelasId}/rekap`);
+    const rows = [['NIS', 'Nama', 'Kelas']];
+    (data.tugas || []).forEach((t) => rows[0].push(`${t.judul} (${t.poin})`));
+    rows[0].push('Rata-rata');
+
+    (data.baris || []).forEach((b) => {
+      const row = [b.siswa?.nis || '', b.siswa?.nama || '', b.siswa?.kelas || data.kelas?.nama || ''];
+      const isi = [];
+      (data.tugas || []).forEach((t) => {
+        const n = b.nilai?.[t.id] ?? null;
+        row.push(n === null ? '' : n);
+        if (n !== null && n !== undefined) isi.push(Number(n));
+      });
+      row.push(isi.length > 0 ? (isi.reduce((acc, c) => acc + c, 0) / isi.length).toFixed(1) : '');
+      rows.push(row);
+    });
+
+    const csvContent = rows.map((r) => r.map((c) => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = namaBerkas || 'nilai.csv';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+    return;
+  }
+}
+
+export const urlBerkas = (p) => (p ? p : null);
 export const setToken = (t) => (t ? localStorage.setItem('token', t) : localStorage.removeItem('token'));
 
 // ---------------- G-CODE ENGINE ----------------

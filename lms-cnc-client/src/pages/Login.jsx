@@ -22,7 +22,7 @@ const VALUE = [
 ];
 
 export default function Login() {
-  const { login, daftar } = useSession();
+  const { login, loginGoogle, daftar } = useSession();
   const [mode, setMode] = useState('login');
   const [form, setForm] = useState({ nama: '', email: '', password: '', kelas: '', kode: '' });
   const [err, setErr] = useState('');
@@ -123,6 +123,29 @@ export default function Login() {
           <Button type="submit" size="lg" icon={mode === 'login' ? 'login' : 'plus'} loading={busy} className="btn--block">
             {mode === 'login' ? 'Masuk' : 'Buat akun'}
           </Button>
+
+          <div style={{ marginTop: 10 }}>
+            <Button
+              type="button"
+              variant="outline"
+              size="lg"
+              className="btn--block"
+              loading={busy}
+              onClick={async () => {
+                setErr('');
+                setBusy(true);
+                try {
+                  await loginGoogle();
+                  navigate('/');
+                } catch (ex) {
+                  setErr(ex.message);
+                }
+                setBusy(false);
+              }}
+            >
+              Masuk dengan Google
+            </Button>
+          </div>
 
           <div className="auth-demo">
             <b className="dim">Akun demo</b>

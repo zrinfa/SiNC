@@ -1,29 +1,76 @@
 // =============================================================
-// session.jsx - state sesi login: token + profil user, tersimpan di
-// localStorage dan diverifikasi ulang lewat GET /api/me.
+// session.jsx - state sesi login Firebase: Auth + Firestore Profil
 // =============================================================
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
-import { api, setToken } from './api.js';
+import { auth, db } from './firebase.js';
+import { onAuthStateChanged } from 'firebase/auth';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { setToken } from './api.js';
+import {
+  fbLogin,
+  fbRegister,
+  fbLoginGoogle,
+  fbLogout,
+  seedInitialDataIfEmpty
+} from './firebaseApi.js';
 
 const Ctx = createContext(null);
 
 export function SessionProvider({ children }) {
   const [user, setUser] = useState(() => JSON.parse(localStorage.getItem('user') || 'null'));
-  const [checking, setChecking] = useState(!!localStorage.getItem('token'));
+  const [checking, setChecking] = useState(true);
 
-  // verifikasi token saat aplikasi dibuka
+  // Inisialisasi seed dan sinkronisasi status login Firebase Auth
   useEffect(() => {
-    if (!localStorage.getItem('token')) { setChecking(false); return; }
-    let alive = true;
-    api('/api/me')
-      .then((u) => { if (alive) { setUser(u); localStorage.setItem('user', JSON.stringify(u)); } })
-      .catch(() => { if (alive) { setToken(null); localStorage.removeItem('user'); setUser(null); } })
-      .finally(() => alive && setChecking(false));
-    return () => { alive = false; };
+    seedInitialDataIfEmpty().catch(() => {});
+
+    const unsubscribe = onAuthStateChanged(auth, async (fbUser) => {
+      if (fbUser) {
+        try {
+          const uDoc = await getDoc(doc(db, 'users', fbUser.uid));
+          let userData;
+          if (uDoc.exists()) {
+            userData = { id: uDoc.id, ...uDoc.data() };
+          } else {
+            userData = {
+              id: fbUser.uid,
+              uid: fbUser.uid,
+              email: fbUser.email,
+              nama: fbUser.displayName || fbUser.email.split('@')[0],
+              role: fbUser.email.includes('admin') ? 'admin' : fbUser.email.includes('guru') ? 'guru' : 'siswa',
+              status: 'aktif'
+            };
+          }
+          const token = await fbUser.getIdToken();
+          setToken(token);
+          localStorage.setItem('user', JSON.stringify(userData));
+          setUser(userData);
+        } catch (err) {
+          console.warn('Gagal membaca profil pengguna:', err);
+        }
+      } else {
+        const local = localStorage.getItem('user');
+        if (!local) {
+          setToken(null);
+          setUser(null);
+        }
+      }
+      setChecking(false);
+    });
+
+    return () => unsubscribe();
   }, []);
 
   const login = useCallback(async (email, password) => {
-    const r = await api('/api/login', { method: 'POST', body: JSON.stringify({ email, password }) });
+    const r = await fbLogin(email, password);
+    setToken(r.token);
+    localStorage.setItem('user', JSON.stringify(r.user));
+    setUser(r.user);
+    return r.user;
+  }, []);
+
+  const loginGoogle = useCallback(async () => {
+    const r = await fbLoginGoogle();
     setToken(r.token);
     localStorage.setItem('user', JSON.stringify(r.user));
     setUser(r.user);
@@ -31,15 +78,15 @@ export function SessionProvider({ children }) {
   }, []);
 
   const daftar = useCallback(async (body) => {
-    const r = await api('/api/register', { method: 'POST', body: JSON.stringify(body) });
+    const r = await fbRegister(body);
     setToken(r.token);
     localStorage.setItem('user', JSON.stringify(r.user));
     setUser(r.user);
     return r.user;
   }, []);
 
-  const keluar = useCallback(() => {
-    api('/api/logout', { method: 'POST' }).catch(() => {});
+  const keluar = useCallback(async () => {
+    await fbLogout().catch(() => {});
     setToken(null);
     localStorage.removeItem('user');
     setUser(null);
@@ -47,13 +94,21 @@ export function SessionProvider({ children }) {
   }, []);
 
   const perbarui = useCallback(async (patch) => {
-    const u = await api('/api/me', { method: 'PUT', body: JSON.stringify(patch) });
-    localStorage.setItem('user', JSON.stringify(u));
-    setUser(u);
-    return u;
-  }, []);
+    if (user && user.id) {
+      await updateDoc(doc(db, 'users', user.id), patch);
+      const updated = { ...user, ...patch };
+      localStorage.setItem('user', JSON.stringify(updated));
+      setUser(updated);
+      return updated;
+    }
+    return user;
+  }, [user]);
 
-  return <Ctx.Provider value={{ user, setUser, checking, login, daftar, keluar, perbarui }}>{children}</Ctx.Provider>;
+  return (
+    <Ctx.Provider value={{ user, setUser, checking, login, loginGoogle, daftar, keluar, perbarui }}>
+      {children}
+    </Ctx.Provider>
+  );
 }
 
 export const useSession = () => useContext(Ctx);

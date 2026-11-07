@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Mode pengujian / aktif untuk semua pengguna aplikasi
+    // Untuk produksi lebih ketat, Anda dapat membatasi berdasarkan role di request.auth
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
