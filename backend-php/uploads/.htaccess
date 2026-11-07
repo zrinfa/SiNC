@@ -1,4 +1,0 @@
-# Upload LKPD (PDF) guru — tolak eksekusi script di sini
-<FilesMatch "\.(php|phtml|phar|cgi|pl)$">
-  Require all denied
-</FilesMatch>
