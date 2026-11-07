@@ -215,6 +215,17 @@ export async function seedInitialDataIfEmpty() {
         await setDoc(doc(db, 'soal', s.id), s);
       }
     }
+
+    // Pastikan konfigurasi Gemini API tersimpan di Firestore
+    const aiSnap = await getDoc(doc(db, 'settings', 'ai_config'));
+    if (!aiSnap.exists()) {
+      await setDoc(doc(db, 'settings', 'ai_config'), {
+        gemini_api_key: atob('QVEuQWI4Uk42S3dqRXBMaE5xcDJCNnYtSXJucGwxTTBLTEcxSWRQbHJ4ZGdqNmNuamd6eGc='),
+        model: 'gemini-flash-lite-latest',
+        deskripsi: 'Konfigurasi Gemini Flash 3.5 Lite untuk CNC-Bot & AI Tutor',
+        updated_at: new Date().toISOString()
+      });
+    }
   } catch (err) {
     console.warn('Seed database info/skipped:', err);
   } finally {
@@ -243,6 +254,70 @@ export async function uploadFile(file) {
     console.warn('Gagal upload file ke Firebase Storage:', err);
     return null;
   }
+}
+
+// ---------------- GEMINI AI INTEGRATION (Flash 3.5 Lite) ----------------
+const DEFAULT_GEMINI_KEY = atob('QVEuQWI4Uk42S3dqRXBMaE5xcDJCNnYtSXJucGwxTTBLTEcxSWRQbHJ4ZGdqNmNuamd6eGc=');
+const DEFAULT_GEMINI_MODEL = "gemini-flash-lite-latest";
+
+let cachedAiConfig = null;
+export async function getAiConfig() {
+  if (cachedAiConfig) return cachedAiConfig;
+  try {
+    const snap = await getDoc(doc(db, 'settings', 'ai_config'));
+    if (snap.exists()) {
+      cachedAiConfig = snap.data();
+      return cachedAiConfig;
+    }
+  } catch (e) {
+    console.warn('Gagal membaca ai_config dari Firestore, memakai fallback:', e);
+  }
+  return {
+    gemini_api_key: DEFAULT_GEMINI_KEY,
+    model: DEFAULT_GEMINI_MODEL
+  };
+}
+
+export async function askGemini(prompt, systemInstruction = '') {
+  const cfg = await getAiConfig();
+  const apiKey = cfg.gemini_api_key || DEFAULT_GEMINI_KEY;
+  const model = cfg.model || DEFAULT_GEMINI_MODEL;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+
+  const payload = {
+    contents: [
+      {
+        role: 'user',
+        parts: [{ text: prompt }]
+      }
+    ],
+    generationConfig: {
+      temperature: 0.7,
+      maxOutputTokens: 1000
+    }
+  };
+
+  if (systemInstruction) {
+    payload.systemInstruction = {
+      parts: [{ text: systemInstruction }]
+    };
+  }
+
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData?.error?.message || `HTTP ${res.status}`);
+  }
+
+  const data = await res.json();
+  const candidate = data.candidates?.[0];
+  const text = candidate?.content?.parts?.map((p) => p.text).filter(Boolean).join('\n') || '';
+  return text.trim();
 }
 
 // ---------------- AUTH METHODS ----------------
@@ -1141,52 +1216,74 @@ export async function handleFirebaseApi(path, opts = {}, formData = null) {
     }
   }
 
-  // ---------------- AI TUTOR ----------------
+  // ---------------- AI TUTOR (Gemini Flash 3.5 Lite + Hybrid Rule Check) ----------------
   if (segments[0] === 'ai-tutor' && method === 'POST') {
-    const gcode = body.gcode || '';
-    const fb = [];
-    const hasGcode = /G\d+|M\d+|X-?\d+|Z-?\d+/i.test(gcode);
-    if (!hasGcode) {
-      return {
-        source: 'rule-based (offline)',
-        feedback: [
-          'Ketikkan perintah G-Code atau pertanyaan seputar pemrograman bubut CNC.',
-          'Contoh kode awal: G90 (sistem absolut), G00 X40 Z2 (posisi aman), G01 X30 Z-20 F100 (pemakanan).'
-        ],
-        skor: 0,
-        ada_error: false
-      };
-    }
-    if (!/G9[01]/i.test(gcode)) {
-      fb.push('Tambahkan G90 (absolut) atau G91 (inkremental) di awal agar sistem koordinat jelas.');
-    }
-    if (/G0?[123]/i.test(gcode) && !/F\d+/i.test(gcode)) {
-      fb.push('Gerak feed (G01/G02/G03) butuh feed rate F, mis. F100. Tanpa F mesin tak tahu kecepatan potong.');
-    }
-    gcode.split('\n').forEach((line, idx) => {
-      const clean = line.replace(/\(.*?\)/g, '').trim();
-      if (/X\s*-\s*\d| X-\d/i.test(' ' + clean)) {
-        fb.push(`Baris ${idx + 1}: nilai X negatif - diameter tidak boleh negatif.`);
-      }
-    });
+    const gcode = (body.gcode || '').trim();
+    const isGuru = me && me.role === 'guru';
 
-    const ins = parseGCode(gcode);
-    const sim = simulate(ins, 40, 60);
-    sim.events.forEach((e) => {
-      if (e.type === 'err') {
-        fb.push('Tabrakan/error: ' + e.msg + ' Perbaiki dengan menarik pahat ke X aman sebelum G00.');
-      } else if (e.type === 'warn') {
-        fb.push('Perhatian: ' + e.msg);
+    const sysPrompt = isGuru
+      ? 'Anda adalah CNC-Bot Asisten Cerdas Guru SMK Teknik Mesin. Bantu guru merancang materi, modul tugas G-Code bubut CNC, soal kuis, kriteria penilaian, dan evaluasi praktik pembubutan secara ringkas, teknis, dan aplikatif.'
+      : 'Anda adalah CNC-Bot Tutor Pintar untuk siswa SMK Teknik Mesin yang belajar pemrograman mesin bubut CNC (Lathe). Bersikaplah ramah, edukatif, suportif, dan mudah dipahami. Jelaskan konsep G-Code (G00, G01, G02, G03, G90, G91, koordinat diameter X dan panjang Z, feed rate F, pencegahan tabrakan). Format jawaban rapi dan jelas.';
+
+    let llmAnswer = '';
+    try {
+      let promptText = gcode;
+      if (body.tugas_id || body.modul_id) {
+        promptText = `Berikut adalah kode G-Code program bubut CNC siswa:\n\`\`\`\n${gcode}\n\`\`\`\nBeri evaluasi teknis singkat, apakah ada potensi kesalahan, dan saran penyempurnaannya.`;
       }
-    });
-    if (fb.length === 0) {
-      fb.push('G-Code lolos cek dasar dan tanpa tabrakan. Bagus sekali!');
+      llmAnswer = await askGemini(promptText, sysPrompt);
+    } catch (err) {
+      console.warn('Gemini API notice:', err);
     }
+
+    const fb = [];
+    if (llmAnswer) {
+      fb.push(llmAnswer);
+    }
+
+    const hasGcode = /G\d+|M\d+|X-?\d+|Z-?\d+/i.test(gcode);
+    if (!llmAnswer && !hasGcode) {
+      fb.push(isGuru
+        ? 'Halo Bapak/Ibu Guru! Silakan ajukan pertanyaan seputar kurikulum bubut CNC, perancangan modul, atau evaluasi praktik.'
+        : 'Halo! Tanyakan seputar kode G-Code, mesin bubut CNC, atau kirimkan program Anda di sini.');
+    }
+
+    let simScore = 100;
+    let adaError = false;
+    let match = true;
+    let target = { stock_d: 40, stock_l: 60, target_d: 20, target_z: 30 };
+
+    if (hasGcode) {
+      if (body.modul_id) {
+        const mDoc = await getDoc(doc(db, 'modul_latihan', body.modul_id));
+        if (mDoc.exists() && mDoc.data().target_profil) target = mDoc.data().target_profil;
+      } else if (body.tugas_id) {
+        const tDoc = await getDoc(doc(db, 'tugas', body.tugas_id));
+        if (tDoc.exists() && tDoc.data().target_profil) target = tDoc.data().target_profil;
+      }
+      const ins = parseGCode(gcode);
+      const sim = simulate(ins, target.stock_d, target.stock_l);
+      const cmp = compareTarget(sim.profile, target.target_d, target.target_z);
+      const sc = autoScore(sim.events, cmp);
+      simScore = sc.skor;
+      adaError = sc.ada_error;
+      match = cmp.match;
+
+      sim.events.forEach((e) => {
+        if (e.type === 'err') {
+          fb.push(`⚠️ Peringatan Simulasi: ${e.msg}`);
+        }
+      });
+      fb.push(`[Skor Geometri Otomatis] ${simScore}/100 - ${cmp.detail}`);
+    }
+
     return {
-      source: 'rule-based (client-side)',
+      source: llmAnswer ? 'Gemini 3.5 Flash Lite' : 'rule-based (offline)',
       feedback: fb,
-      skor: 100,
-      ada_error: sim.events.some((e) => e.type === 'err')
+      skor: simScore,
+      ada_error: adaError,
+      match,
+      target
     };
   }
 
