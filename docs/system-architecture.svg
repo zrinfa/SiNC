@@ -1,0 +1,326 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e17" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <linearGradient id="boxClient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <linearGradient id="boxFirebase" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c1917" />
+      <stop offset="100%" stop-color="#292524" />
+    </linearGradient>
+
+    <linearGradient id="boxAI" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#022c22" stop-opacity="0.8"/>
+    </linearGradient>
+
+    <linearGradient id="boxGithub" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2e1065" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#1e1b4b" stop-opacity="0.8"/>
+    </linearGradient>
+
+    <!-- Filter Shadows -->
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="125%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.6" />
+    </filter>
+    <filter id="glowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Markers -->
+    <marker id="arrowCyan" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 Z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrowAmber" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 Z" fill="#fbbf24" />
+    </marker>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 Z" fill="#fb923c" />
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 Z" fill="#34d399" />
+    </marker>
+  </defs>
+
+  <style>
+    .title { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 26px; font-weight: 800; fill: #f8fafc; letter-spacing: -0.5px; }
+    .subtitle { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 14px; fill: #94a3b8; }
+    .group-label { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; }
+    .card-title { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 14px; font-weight: 700; fill: #f1f5f9; }
+    .card-desc { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; fill: #94a3b8; line-height: 1.4; }
+    .badge { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 10px; font-weight: 700; }
+    .link-text { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; font-weight: 600; fill: #64748b; }
+    .code-text { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #38bdf8; }
+  </style>
+
+  <!-- Background Canvas -->
+  <rect width="1200" height="900" fill="url(#bgGrad)" />
+
+  <!-- Grid overlay -->
+  <g opacity="0.04" stroke="#ffffff" stroke-width="1">
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" />
+    </pattern>
+    <rect width="1200" height="900" fill="url(#grid)" />
+  </g>
+
+  <!-- Header -->
+  <g transform="translate(60, 48)">
+    <rect x="-10" y="-10" width="48" height="48" rx="10" fill="#0284c7" fill-opacity="0.2" stroke="#38bdf8" stroke-width="1.5"/>
+    <path d="M 6 14 L 22 6 L 38 14 L 22 22 Z M 6 20 L 22 28 L 38 20 M 6 26 L 22 34 L 38 26" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <text x="56" y="16" class="title">SiNC Architecture Diagram</text>
+    <text x="56" y="38" class="subtitle">Full Serverless LMS &amp; CNC Lathe Simulator (React 18 + Three.js + Firebase + Gemini AI)</text>
+    
+    <!-- Version badges -->
+    <rect x="850" y="2" width="105" height="26" rx="6" fill="#0369a1" />
+    <text x="862" y="19" class="badge" fill="#ffffff">SPA SERVERLESS</text>
+
+    <rect x="965" y="2" width="115" height="26" rx="6" fill="#059669" />
+    <text x="975" y="19" class="badge" fill="#ffffff">GEMINI 3.5 FLASH</text>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- 1. USER & ACCESS LAYER (TOP) -->
+  <!-- ========================================== -->
+  <g transform="translate(60, 115)">
+    <!-- Container -->
+    <rect width="1080" height="70" rx="12" fill="#1e293b" fill-opacity="0.4" stroke="#334155" stroke-width="1" />
+    <text x="24" y="42" class="group-label" fill="#94a3b8">User Clients</text>
+
+    <!-- Role: Siswa -->
+    <g transform="translate(190, 14)">
+      <rect width="250" height="42" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.2"/>
+      <circle cx="24" cy="21" r="10" fill="#0284c7" />
+      <text x="44" y="21" class="card-title">Siswa SMK (Murid)</text>
+      <text x="44" y="33" class="card-desc">Simulasi 3D/2D, Kerjakan Tugas &amp; Kuis</text>
+    </g>
+
+    <!-- Role: Guru -->
+    <g transform="translate(470, 14)">
+      <rect width="250" height="42" rx="8" fill="#0f172a" stroke="#a855f7" stroke-width="1.2"/>
+      <circle cx="24" cy="21" r="10" fill="#7c3aed" />
+      <text x="44" y="21" class="card-title">Guru Pengampu</text>
+      <text x="44" y="33" class="card-desc">Kelola Rombel, Modul, Tugas, &amp; Penilaian</text>
+    </g>
+
+    <!-- Role: Admin -->
+    <g transform="translate(750, 14)">
+      <rect width="250" height="42" rx="8" fill="#0f172a" stroke="#ec4899" stroke-width="1.2"/>
+      <circle cx="24" cy="21" r="10" fill="#db2777" />
+      <text x="44" y="21" class="card-title">Administrator Sekolah</text>
+      <text x="44" y="33" class="card-desc">Manajemen Akun Massal &amp; Rekap Nilai</text>
+    </g>
+  </g>
+
+  <!-- Connection: User to Client App -->
+  <path d="M 600 185 L 600 230" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrowCyan)"/>
+  <text x="608" y="212" class="link-text">HTTPS / Web Browser (Hash Routing: #/)</text>
+
+  <!-- ========================================== -->
+  <!-- 2. FRONTEND CLIENT LAYER (SPA IN BROWSER) -->
+  <!-- ========================================== -->
+  <g transform="translate(60, 235)">
+    <!-- Container -->
+    <rect width="1080" height="345" rx="16" fill="url(#boxClient)" stroke="#38bdf8" stroke-width="1.5" filter="url(#cardShadow)"/>
+    
+    <!-- Title Section -->
+    <rect x="0" y="0" width="1080" height="44" rx="16" fill="#1e293b" />
+    <path d="M 0 30 L 0 44 L 1080 44 L 1080 30 Z" fill="#1e293b" />
+    <text x="24" y="28" class="group-label" fill="#38bdf8">Frontend Client Layer (React 18 + Vite SPA — In Browser Execution)</text>
+
+    <!-- SUB-MODULE 1: UI & ROUTER -->
+    <g transform="translate(24, 60)">
+      <rect width="320" height="260" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <rect x="0" y="0" width="320" height="32" rx="10" fill="#1e293b" />
+      <path d="M 0 20 L 0 32 L 320 32 L 320 20 Z" fill="#1e293b" />
+      <text x="14" y="21" class="card-title" fill="#e2e8f0">1. UI &amp; Navigation Core</text>
+
+      <!-- Sub items -->
+      <g transform="translate(14, 46)">
+        <rect width="292" height="42" rx="6" fill="#1e293b" stroke="#475569" stroke-width="0.8" />
+        <text x="12" y="19" class="card-title" font-size="12">Hash Router (router.jsx)</text>
+        <text x="12" y="33" class="card-desc">Routing #/ kompatibel 100% GitHub Pages</text>
+      </g>
+      <g transform="translate(14, 96)">
+        <rect width="292" height="42" rx="6" fill="#1e293b" stroke="#475569" stroke-width="0.8" />
+        <text x="12" y="19" class="card-title" font-size="12">Role Access Control</text>
+        <text x="12" y="33" class="card-desc">Proteksi navigasi Siswa / Guru / Admin</text>
+      </g>
+      <g transform="translate(14, 146)">
+        <rect width="292" height="42" rx="6" fill="#1e293b" stroke="#475569" stroke-width="0.8" />
+        <text x="12" y="19" class="card-title" font-size="12">CNC-Bot Chat Widget</text>
+        <text x="12" y="33" class="card-desc">Floating AI assistant (Guru &amp; Siswa modes)</text>
+      </g>
+      <g transform="translate(14, 196)">
+        <rect width="292" height="50" rx="6" fill="#1e293b" stroke="#475569" stroke-width="0.8" />
+        <text x="12" y="19" class="card-title" font-size="12">CSV Export &amp; Reporting</text>
+        <text x="12" y="33" class="card-desc">Rekap nilai rombel di-generate instan di browser</text>
+      </g>
+    </g>
+
+    <!-- SUB-MODULE 2: 3D & 2D SIMULATOR -->
+    <g transform="translate(370, 60)">
+      <rect width="330" height="260" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <rect x="0" y="0" width="330" height="32" rx="10" fill="#1e293b" />
+      <path d="M 0 20 L 0 32 L 330 32 L 330 20 Z" fill="#1e293b" />
+      <text x="14" y="21" class="card-title" fill="#e2e8f0">2. Lathe Simulator (3D / 2D)</text>
+
+      <g transform="translate(14, 46)">
+        <rect width="302" height="46" rx="6" fill="#1e293b" stroke="#0284c7" stroke-width="0.8" />
+        <text x="12" y="19" class="card-title" font-size="12">Three.js 3D Physics Viewport</text>
+        <text x="12" y="33" class="card-desc">Spindle 3-Jaw, Tailstock, Turret, Coolant &amp; Sparks</text>
+      </g>
+      <g transform="translate(14, 100)">
+        <rect width="302" height="46" rx="6" fill="#1e293b" stroke="#0284c7" stroke-width="0.8" />
+        <text x="12" y="19" class="card-title" font-size="12">Canvas 2D Control Panel</text>
+        <text x="12" y="33" class="card-desc">GreaMaT layout, live toolpath X/Z, chuck boundary</text>
+      </g>
+      <g transform="translate(14, 154)">
+        <rect width="302" height="46" rx="6" fill="#1e293b" stroke="#0284c7" stroke-width="0.8" />
+        <text x="12" y="19" class="card-title" font-size="12">G-Code Editor &amp; Syntax Highlighter</text>
+        <text x="12" y="33" class="card-desc">Real-time tokenizer for G0/G1/G2/G3, M-codes, F, S</text>
+      </g>
+      <g transform="translate(14, 208)">
+        <rect width="302" height="38" rx="6" fill="#1e293b" stroke="#0284c7" stroke-width="0.8" />
+        <text x="12" y="16" class="card-title" font-size="12">Auto-Stop Crash Protection</text>
+        <text x="12" y="30" class="card-desc">Emergency alarm bila pahat menabrak chuck/benda</text>
+      </g>
+    </g>
+
+    <!-- SUB-MODULE 3: G-CODE ENGINE & ADAPTER -->
+    <g transform="translate(726, 60)">
+      <rect width="330" height="260" rx="10" fill="#0f172a" stroke="#f59e0b" stroke-width="1.2" />
+      <rect x="0" y="0" width="330" height="32" rx="10" fill="#78350f" fill-opacity="0.4"/>
+      <path d="M 0 20 L 0 32 L 330 32 L 330 20 Z" fill="#78350f" fill-opacity="0.4"/>
+      <text x="14" y="21" class="card-title" fill="#fbbf24">3. Simulation Engine &amp; API Adapter</text>
+
+      <g transform="translate(14, 46)">
+        <rect width="302" height="44" rx="6" fill="#1e293b" stroke="#b45309" stroke-width="0.8" />
+        <text x="12" y="18" class="card-title" font-size="12">G-Code Kinematic Parser</text>
+        <text x="12" y="32" class="card-desc">parseGCode &amp; arcPoints (I/K radius &amp; R arc math)</text>
+      </g>
+      <g transform="translate(14, 98)">
+        <rect width="302" height="44" rx="6" fill="#1e293b" stroke="#b45309" stroke-width="0.8" />
+        <text x="12" y="18" class="card-title" font-size="12">Auto-Grader (compareTarget)</text>
+        <text x="12" y="32" class="card-desc">Toleransi radius &#177;0.5 mm &amp; kalkulasi skor 0-100</text>
+      </g>
+      <g transform="translate(14, 150)">
+        <rect width="302" height="46" rx="6" fill="#1e293b" stroke="#b45309" stroke-width="0.8" />
+        <text x="12" y="18" class="card-title" font-size="12">firebaseApi.js (Serverless Router)</text>
+        <text x="12" y="32" class="card-desc">Menggantikan 100% REST PHP ke Firestore/Storage</text>
+      </g>
+      <g transform="translate(14, 204)">
+        <rect width="302" height="42" rx="6" fill="#1e293b" stroke="#b45309" stroke-width="0.8" />
+        <text x="12" y="18" class="card-title" font-size="12">Automatic DB Seeder</text>
+        <text x="12" y="32" class="card-desc">Auto-seed Modul L1-L4, rombel, materi, &amp; soal</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- 3. CLOUD BACKEND & SERVICES (BOTTOM LAYER) -->
+  <!-- ========================================== -->
+
+  <!-- Left Cloud Box: GITHUB ACTIONS & PAGES -->
+  <g transform="translate(60, 620)">
+    <rect width="320" height="235" rx="14" fill="url(#boxGithub)" stroke="#a855f7" stroke-width="1.2" filter="url(#cardShadow)"/>
+    <text x="20" y="30" class="group-label" fill="#c084fc">GitHub Pages &amp; CI/CD</text>
+
+    <g transform="translate(18, 48)">
+      <rect width="284" height="48" rx="6" fill="#0f172a" stroke="#7e22ce" stroke-width="0.8"/>
+      <text x="12" y="20" class="card-title" font-size="12">GitHub Actions Workflow</text>
+      <text x="12" y="36" class="code-text">.github/workflows/deploy.yml</text>
+    </g>
+    <g transform="translate(18, 106)">
+      <rect width="284" height="48" rx="6" fill="#0f172a" stroke="#7e22ce" stroke-width="0.8"/>
+      <text x="12" y="20" class="card-title" font-size="12">Automated Build Pipeline</text>
+      <text x="12" y="35" class="card-desc">Trigger: push main &#8594; npm ci &#8594; vite build</text>
+    </g>
+    <g transform="translate(18, 164)">
+      <rect width="284" height="52" rx="6" fill="#0f172a" stroke="#7e22ce" stroke-width="0.8"/>
+      <text x="12" y="20" class="card-title" font-size="12">Live Static Hosting</text>
+      <text x="12" y="36" class="code-text">https://zrinfa.github.io/SiNC/</text>
+    </g>
+  </g>
+
+  <!-- Center Cloud Box: GOOGLE FIREBASE -->
+  <g transform="translate(410, 620)">
+    <rect width="450" height="235" rx="14" fill="url(#boxFirebase)" stroke="#f97316" stroke-width="1.2" filter="url(#cardShadow)"/>
+    <text x="20" y="30" class="group-label" fill="#fb923c">Google Firebase (Serverless BaaS)</text>
+
+    <!-- Firebase Auth -->
+    <g transform="translate(18, 48)">
+      <rect width="414" height="50" rx="6" fill="#0c0a09" stroke="#ea580c" stroke-width="0.8"/>
+      <text x="14" y="20" class="card-title" font-size="12">Firebase Authentication</text>
+      <text x="14" y="36" class="card-desc">Email/Password (Auto demo account creation) &amp; Google OAuth</text>
+    </g>
+
+    <!-- Cloud Firestore -->
+    <g transform="translate(18, 106)">
+      <rect width="414" height="60" rx="6" fill="#0c0a09" stroke="#ea580c" stroke-width="0.8"/>
+      <text x="14" y="20" class="card-title" font-size="12">Cloud Firestore (NoSQL Document Store)</text>
+      <text x="14" y="36" class="code-text">users • kelas • anggota_kelas • modul • materi</text>
+      <text x="14" y="50" class="code-text">tugas • soal • pengumpulan • percobaan • settings</text>
+    </g>
+
+    <!-- Cloud Storage -->
+    <g transform="translate(18, 174)">
+      <rect width="414" height="44" rx="6" fill="#0c0a09" stroke="#ea580c" stroke-width="0.8"/>
+      <text x="14" y="18" class="card-title" font-size="12">Firebase Cloud Storage</text>
+      <text x="14" y="32" class="card-desc">Upload jobsheet PDF, LKPD praktikum, &amp; berkas materi</text>
+    </g>
+  </g>
+
+  <!-- Right Cloud Box: GOOGLE GEMINI AI -->
+  <g transform="translate(890, 620)">
+    <rect width="250" height="235" rx="14" fill="url(#boxAI)" stroke="#10b981" stroke-width="1.2" filter="url(#cardShadow)"/>
+    <text x="20" y="30" class="group-label" fill="#34d399">Gemini AI Studio</text>
+
+    <g transform="translate(16, 48)">
+      <rect width="218" height="48" rx="6" fill="#022c22" stroke="#059669" stroke-width="0.8"/>
+      <text x="12" y="19" class="card-title" font-size="12">Gemini 3.5 Flash-Lite</text>
+      <text x="12" y="34" class="code-text">gemini-flash-lite-latest</text>
+    </g>
+    <g transform="translate(16, 106)">
+      <rect width="218" height="52" rx="6" fill="#022c22" stroke="#059669" stroke-width="0.8"/>
+      <text x="12" y="19" class="card-title" font-size="12">Dynamic AI Config</text>
+      <text x="12" y="34" class="card-desc">Key &amp; model didapat langsung dari Firestore settings</text>
+    </g>
+    <g transform="translate(16, 168)">
+      <rect width="218" height="48" rx="6" fill="#022c22" stroke="#059669" stroke-width="0.8"/>
+      <text x="12" y="19" class="card-title" font-size="12">Role-Aware Tutor</text>
+      <text x="12" y="34" class="card-desc">Bimbingan siswa &amp; asisten perancangan guru</text>
+    </g>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- 4. DATA FLOW CONNECTORS & ARROWS -->
+  <!-- ========================================== -->
+
+  <!-- Client to GitHub Pages (Deploy) -->
+  <path d="M 220 580 L 220 620" fill="none" stroke="#a855f7" stroke-width="2" marker-end="url(#arrowCyan)"/>
+
+  <!-- Client to Firebase (BaaS) -->
+  <path d="M 635 580 L 635 620" fill="none" stroke="#f97316" stroke-width="2.5" marker-end="url(#arrowOrange)"/>
+  <text x="645" y="605" class="link-text" fill="#fb923c">Firebase SDK v11 (WebSocket / REST)</text>
+
+  <!-- Client to Gemini (AI calls) -->
+  <path d="M 1015 580 L 1015 620" fill="none" stroke="#34d399" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <text x="940" y="605" class="link-text" fill="#34d399">REST generateContent</text>
+
+  <!-- Footer Info -->
+  <g transform="translate(60, 875)">
+    <text x="0" y="10" font-family="'Inter', sans-serif" font-size="12" fill="#64748b">SiNC: Simulator Mesin Bubut CNC SMK • Logicodix 2026 • 100% Serverless Architecture</text>
+    <text x="920" y="10" font-family="'Inter', sans-serif" font-size="12" fill="#38bdf8" text-anchor="start">https://zrinfa.github.io/SiNC/</text>
+  </g>
+</svg>

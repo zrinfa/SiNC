@@ -19,6 +19,8 @@ Learning Management System (LMS) G-Code untuk SMK berbasis **Full Serverless** y
 
 Aplikasi ini telah dimigrasikan dari arsitektur monolitik (PHP + MySQL + cPanel) menjadi **Full Serverless Single Page Application (SPA)** yang modern, ringan, scalable, dan bebas biaya server.
 
+![Diagram Arsitektur Sistem SiNC](docs/system-architecture.svg)
+
 ```
 [ Pengguna / Browser ]
         │
