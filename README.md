@@ -1,4 +1,4 @@
-# SiNC — LMS Simulator Bubut CNC (Serverless Edition)
+# SiNC: LMS Simulator Bubut CNC (Serverless Edition)
 
 ![React](https://img.shields.io/badge/React-18-149ECA?logo=react&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)
@@ -157,5 +157,5 @@ Di halaman login telah disediakan tombol instan untuk akun demo (otomatis terdaf
 
 ## 📄 Lisensi & Hak Cipta
 
-Dibuat untuk ajang **Logicodix 2026** — *Subtema: Smart and Fun Education*.  
+Dibuat untuk ajang **Logicodix 2026** (Subtema: Smart and Fun Education).  
 Hak cipta dilindungi undang-undang.

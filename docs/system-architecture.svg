@@ -1,456 +1,431 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 960" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 980" width="100%" height="100%">
   <defs>
-    <!-- Filter Shadows for White Theme -->
-    <filter id="softShadow" x="-6%" y="-6%" width="112%" height="116%" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.06" />
-      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.04" />
+    <!-- Soft Drop Shadows for Clean White Look -->
+    <filter id="shadow-card" x="-4%" y="-4%" width="108%" height="110%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.05" />
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.03" />
     </filter>
-    <filter id="cardShadow" x="-8%" y="-8%" width="116%" height="120%" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#0f172a" flood-opacity="0.08" />
-      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.04" />
+    <filter id="shadow-elevated" x="-6%" y="-6%" width="112%" height="116%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#0f172a" flood-opacity="0.07" />
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.03" />
     </filter>
 
     <!-- Arrow Markers -->
-    <marker id="arrBlue" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+    <marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
       <path d="M 0 0 L 8 4 L 0 8 Z" fill="#0284c7" />
     </marker>
-    <marker id="arrOrange" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-      <path d="M 0 0 L 8 4 L 0 8 Z" fill="#ea580c" />
-    </marker>
-    <marker id="arrPurple" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+    <marker id="arrow-purple" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
       <path d="M 0 0 L 8 4 L 0 8 Z" fill="#7c3aed" />
     </marker>
-    <marker id="arrGreen" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+    <marker id="arrow-orange" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 Z" fill="#ea580c" />
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
       <path d="M 0 0 L 8 4 L 0 8 Z" fill="#059669" />
     </marker>
-    <marker id="arrAmber" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-      <path d="M 0 0 L 8 4 L 0 8 Z" fill="#d97706" />
-    </marker>
 
-    <!-- Logo Definitions -->
+    <!-- LOGOS -->
     <!-- React Logo -->
     <g id="logo-react">
-      <ellipse cx="16" cy="16" rx="14" ry="5.5" fill="none" stroke="#00d8ff" stroke-width="1.6" transform="rotate(0 16 16)"/>
-      <ellipse cx="16" cy="16" rx="14" ry="5.5" fill="none" stroke="#00d8ff" stroke-width="1.6" transform="rotate(60 16 16)"/>
-      <ellipse cx="16" cy="16" rx="14" ry="5.5" fill="none" stroke="#00d8ff" stroke-width="1.6" transform="rotate(120 16 16)"/>
-      <circle cx="16" cy="16" r="3" fill="#00d8ff"/>
+      <ellipse cx="14" cy="14" rx="12" ry="4.8" fill="none" stroke="#00d8ff" stroke-width="1.5" transform="rotate(0 14 14)"/>
+      <ellipse cx="14" cy="14" rx="12" ry="4.8" fill="none" stroke="#00d8ff" stroke-width="1.5" transform="rotate(60 14 14)"/>
+      <ellipse cx="14" cy="14" rx="12" ry="4.8" fill="none" stroke="#00d8ff" stroke-width="1.5" transform="rotate(120 14 14)"/>
+      <circle cx="14" cy="14" r="2.5" fill="#00d8ff"/>
     </g>
 
     <!-- Vite Logo -->
     <g id="logo-vite">
-      <path d="M 29.5 5.5 L 16.5 29.5 L 3.5 5.5 Z" fill="#bd34fe" />
-      <path d="M 27.5 4.5 L 16.5 28.5 L 5.5 4.5 Z" fill="#41d1ff" opacity="0.3"/>
-      <path d="M 18.5 2 L 8.5 15 L 15.5 15 L 12.5 26 L 24.5 11 L 17.5 11 Z" fill="#ffc300" stroke="#ffffff" stroke-width="0.8"/>
+      <path d="M 26 4.5 L 14.5 25.5 L 3 4.5 Z" fill="#bd34fe" />
+      <path d="M 24 3.5 L 14.5 24.5 L 5 3.5 Z" fill="#41d1ff" opacity="0.35"/>
+      <path d="M 16 2 L 7 13 L 13.5 13 L 11 23 L 21.5 10 L 15 10 Z" fill="#ffc300" stroke="#ffffff" stroke-width="0.7"/>
     </g>
 
     <!-- Three.js Logo -->
     <g id="logo-three">
-      <path d="M 4 28 L 28 28 L 16 4 Z" fill="none" stroke="#111827" stroke-width="2.5" stroke-linejoin="round"/>
-      <path d="M 16 4 L 16 28 M 4 28 L 22 16 M 28 28 L 10 16" fill="none" stroke="#111827" stroke-width="1.5" stroke-linejoin="round"/>
+      <path d="M 3 24 L 25 24 L 14 3 Z" fill="none" stroke="#0f172a" stroke-width="2.2" stroke-linejoin="round"/>
+      <path d="M 14 3 L 14 24 M 3 24 L 19.5 13.5 M 25 24 L 8.5 13.5" fill="none" stroke="#0f172a" stroke-width="1.4" stroke-linejoin="round"/>
     </g>
 
     <!-- Firebase Logo -->
     <g id="logo-firebase">
-      <path d="M 6.2 24.2 L 9.8 4.2 C 9.9 3.7 10.5 3.5 10.8 3.9 L 14.5 11.2 Z" fill="#ffc400" />
-      <path d="M 6.2 24.2 L 18.5 7.8 C 18.9 7.3 19.6 7.5 19.7 8.1 L 21.8 17.2 Z" fill="#ff8f00" />
-      <path d="M 16.2 29.2 L 6.2 24.2 L 14.5 11.2 L 21.8 17.2 Z" fill="#ffa000" />
-      <path d="M 26.8 24.2 L 21.8 17.2 L 14.5 11.2 L 16.2 29.2 C 16.4 29.5 16.8 29.5 17.0 29.4 Z" fill="#f57c00" />
+      <path d="M 5.5 22.5 L 8.8 3.8 C 8.9 3.3 9.5 3.1 9.8 3.5 L 13.2 10.2 Z" fill="#ffc400" />
+      <path d="M 5.5 22.5 L 16.8 7.2 C 17.2 6.7 17.8 6.9 17.9 7.5 L 19.8 15.8 Z" fill="#ff8f00" />
+      <path d="M 14.8 26.8 L 5.5 22.5 L 13.2 10.2 L 19.8 15.8 Z" fill="#ffa000" />
+      <path d="M 24.5 22.5 L 19.8 15.8 L 13.2 10.2 L 14.8 26.8 C 15.0 27.1 15.4 27.1 15.6 27.0 Z" fill="#f57c00" />
     </g>
 
-    <!-- Google Gemini Logo -->
+    <!-- Gemini Sparkle Logo -->
     <g id="logo-gemini">
-      <path d="M 16 2 C 16 9.7 9.7 16 2 16 C 9.7 16 16 22.3 16 30 C 16 22.3 22.3 16 30 16 C 22.3 16 16 9.7 16 2 Z" fill="url(#geminiGrad)" />
-      <circle cx="16" cy="16" r="3" fill="#ffffff" opacity="0.4"/>
+      <path d="M 14 2 C 14 8.6 8.6 14 2 14 C 8.6 14 14 19.4 14 26 C 14 19.4 19.4 14 26 14 C 19.4 14 14 8.6 14 2 Z" fill="url(#gemini-grad)" />
+      <circle cx="14" cy="14" r="2.5" fill="#ffffff" opacity="0.5"/>
     </g>
-    <linearGradient id="geminiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="gemini-grad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#1a73e8" />
-      <stop offset="50%" stop-color="#7c3aed" />
+      <stop offset="50%" stop-color="#9333ea" />
       <stop offset="100%" stop-color="#ec4899" />
     </linearGradient>
 
-    <!-- GitHub Logo -->
+    <!-- GitHub Octocat Logo -->
     <g id="logo-github">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M 16 2 C 8.27 2 2 8.27 2 16 C 2 22.19 6.02 27.43 11.61 29.29 C 12.31 29.42 12.57 28.99 12.57 28.62 C 12.57 28.29 12.55 27.21 12.55 26.05 C 8.65 26.9 7.83 24.37 7.83 24.37 C 7.2 22.75 6.28 22.32 6.28 22.32 C 5.01 21.45 6.38 21.47 6.38 21.47 C 7.78 21.57 8.52 22.91 8.52 22.91 C 9.77 25.05 11.8 24.43 12.6 24.07 C 12.73 23.16 13.09 22.54 13.49 22.19 C 10.38 21.84 7.11 20.64 7.11 15.28 C 7.11 13.75 7.66 12.5 8.55 11.53 C 8.41 11.18 7.92 9.75 8.69 7.82 C 8.69 7.82 9.87 7.44 12.55 9.26 C 13.67 8.95 14.87 8.8 16.07 8.79 C 17.27 8.8 18.47 8.95 19.59 9.26 C 22.27 7.44 23.45 7.82 23.45 7.82 C 24.22 9.75 23.73 11.18 23.59 11.53 C 24.49 12.5 25.03 13.75 25.03 15.28 C 25.03 20.66 21.75 21.83 18.63 22.18 C 19.13 22.61 19.57 23.46 19.57 24.77 C 19.57 26.65 19.55 28.16 19.55 28.62 C 19.55 29 19.81 29.43 20.52 29.29 C 26.1 27.42 30.11 22.18 30.11 16 C 30.11 8.27 23.83 2 16 2 Z" fill="#181717"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M 14 2 C 7.37 2 2 7.37 2 14 C 2 19.3 5.43 23.79 10.2 25.38 C 10.8 25.49 11.02 25.12 11.02 24.8 C 11.02 24.52 11.01 23.6 11.01 22.6 C 7.68 23.32 6.98 21.16 6.98 21.16 C 6.44 19.78 5.65 19.41 5.65 19.41 C 4.56 18.66 5.73 18.68 5.73 18.68 C 6.93 18.76 7.56 19.91 7.56 19.91 C 8.63 21.74 10.37 21.21 11.06 20.9 C 11.17 20.12 11.48 19.59 11.82 19.29 C 9.16 18.99 6.36 17.96 6.36 13.37 C 6.36 12.06 6.83 10.99 7.6 10.15 C 7.48 9.85 7.06 8.62 7.72 6.97 C 7.72 6.97 8.73 6.64 11.02 8.2 C 11.98 7.93 13.01 7.8 14.04 7.79 C 15.07 7.8 16.1 7.93 17.06 8.2 C 19.35 6.64 20.36 6.97 20.36 6.97 C 21.02 8.62 20.6 9.85 20.48 10.15 C 21.25 10.99 21.72 12.06 21.72 13.37 C 21.72 17.98 18.91 18.98 16.24 19.28 C 16.67 19.65 17.05 20.38 17.05 21.5 C 17.05 23.11 17.03 24.4 17.03 24.8 C 17.03 25.13 17.25 25.5 17.86 25.38 C 22.63 23.78 26.06 19.3 26.06 14 C 26.06 7.37 20.69 2 14 2 Z" fill="#1e293b"/>
     </g>
 
-    <!-- HTML5 / Canvas Logo -->
-    <g id="logo-canvas">
-      <rect x="3" y="3" width="26" height="26" rx="5" fill="#f97316"/>
-      <path d="M 8 9 L 24 9 L 22 22 L 16 24 L 10 22 Z" fill="#ffffff" opacity="0.3"/>
-      <text x="16" y="21" font-family="'Inter', sans-serif" font-weight="900" font-size="13" fill="#ffffff" text-anchor="middle">2D</text>
+    <!-- Role Avatar Icons -->
+    <g id="avatar-student">
+      <circle cx="15" cy="15" r="14" fill="#e0f2fe" />
+      <path d="M 8 12 L 15 8.5 L 22 12 L 15 15.5 Z M 10.5 14.5 L 10.5 18.5 C 10.5 20 19.5 20 19.5 18.5 L 19.5 14.5" fill="none" stroke="#0284c7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
     </g>
-
-    <!-- User Icons -->
-    <g id="ico-student">
-      <circle cx="16" cy="16" r="14" fill="#e0f2fe"/>
-      <path d="M 8 13 L 16 9 L 24 13 L 16 17 Z M 11 15.5 L 11 20 C 11 22 21 22 21 20 L 21 15.5" fill="none" stroke="#0284c7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <g id="avatar-teacher">
+      <circle cx="15" cy="15" r="14" fill="#f3e8ff" />
+      <path d="M 9 10 A 3.5 3.5 0 1 1 16 10 A 3.5 3.5 0 1 1 9 10 Z M 7 21 C 7 18 10 16.5 12.5 16.5 C 15 16.5 18 18 18 21 Z M 19 10 L 23 10 M 21 8 L 21 12" fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
     </g>
-    <g id="ico-teacher">
-      <circle cx="16" cy="16" r="14" fill="#f3e8ff"/>
-      <path d="M 9 11 A 4 4 0 1 1 17 11 A 4 4 0 1 1 9 11 Z M 7 23 C 7 19.5 10 18 13 18 C 16 18 19 19.5 19 23 Z M 20 11 L 25 11 M 22 8 L 22 14" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-    </g>
-    <g id="ico-admin">
-      <circle cx="16" cy="16" r="14" fill="#fce7f3"/>
-      <path d="M 16 7 L 24 10.5 L 24 16 C 24 21 16 25 16 25 C 16 25 8 21 8 16 L 8 10.5 Z" fill="none" stroke="#db2777" stroke-width="1.8" stroke-linejoin="round"/>
-      <path d="M 13 16 L 15 18 L 19 14" fill="none" stroke="#db2777" stroke-width="1.8" stroke-linecap="round"/>
+    <g id="avatar-admin">
+      <circle cx="15" cy="15" r="14" fill="#fce7f3" />
+      <path d="M 15 7 L 22 10 L 22 15 C 22 19.5 15 23 15 23 C 15 23 8 19.5 8 15 L 8 10 Z" fill="none" stroke="#db2777" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M 12 15 L 14 17 L 18 13" fill="none" stroke="#db2777" stroke-width="1.6" stroke-linecap="round"/>
     </g>
   </defs>
 
   <style>
     .font-sans { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    .font-mono { font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace; }
-    
-    .title-main { font-size: 26px; font-weight: 800; fill: #0f172a; letter-spacing: -0.5px; }
-    .title-sub { font-size: 13px; font-weight: 500; fill: #64748b; }
-    
-    .box-header { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; }
-    .card-title { font-size: 13px; font-weight: 700; fill: #0f172a; }
-    .card-desc { font-size: 11px; font-weight: 400; fill: #64748b; line-height: 1.4; }
-    .code-tag { font-size: 10px; font-weight: 600; fill: #0284c7; }
-    .pill-text { font-size: 10px; font-weight: 700; letter-spacing: 0.4px; }
-    .flow-label { font-size: 11px; font-weight: 600; fill: #475569; }
+    .font-mono { font-family: 'JetBrains Mono', Consolas, monospace; }
   </style>
 
-  <!-- Background Canvas (Pure Clean White with subtle dot grid) -->
-  <rect width="1240" height="960" fill="#ffffff" />
+  <!-- Clean Pure White Background -->
+  <rect width="1300" height="980" fill="#ffffff" />
   
-  <g opacity="0.4" fill="#cbd5e1">
-    <pattern id="dotPattern" width="24" height="24" patternUnits="userSpaceOnUse">
+  <!-- Subtle Soft Dot Grid for Professional Canvas Feel -->
+  <g opacity="0.35" fill="#94a3b8">
+    <pattern id="dot-grid" width="25" height="25" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="1" />
     </pattern>
-    <rect width="1240" height="960" fill="url(#dotPattern)" />
+    <rect width="1300" height="980" fill="url(#dot-grid)" />
   </g>
 
   <!-- ============================================================ -->
-  <!-- HEADER SECTION -->
+  <!-- 0. HEADER SECTION -->
   <!-- ============================================================ -->
-  <g transform="translate(50, 40)" class="font-sans">
-    <!-- Brand Mark -->
-    <rect x="0" y="0" width="50" height="50" rx="12" fill="#0284c7" />
-    <circle cx="25" cy="25" r="14" fill="none" stroke="#ffffff" stroke-width="2.5" />
-    <circle cx="25" cy="25" r="4.5" fill="#ffd21e" />
-    
+  <g transform="translate(50, 32)" class="font-sans">
+    <!-- Main Logo Badge -->
+    <rect x="0" y="0" width="52" height="52" rx="12" fill="#0284c7" />
+    <circle cx="26" cy="26" r="14" fill="none" stroke="#ffffff" stroke-width="2.5" />
+    <circle cx="26" cy="26" r="4.5" fill="#ffd21e" />
+
     <!-- Title and Subtitle -->
-    <text x="65" y="24" class="title-main">SiNC — System Architecture Diagram</text>
-    <text x="65" y="44" class="title-sub">LMS Simulator Mesin Bubut CNC SMK • Modern Full Serverless Architecture (React 18, Three.js, Firebase, Gemini 3.5)</text>
+    <text x="68" y="24" font-size="24" font-weight="800" fill="#0f172a" letter-spacing="-0.5px">SiNC: System Architecture Diagram</text>
+    <text x="68" y="44" font-size="13" font-weight="500" fill="#64748b">LMS Simulator Mesin Bubut CNC SMK | Full Serverless Architecture (React 18, Three.js, Firebase, Gemini AI)</text>
 
-    <!-- Badges -->
-    <g transform="translate(735, 12)">
-      <rect x="0" y="0" width="100" height="26" rx="6" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1"/>
-      <text x="50" y="17" class="pill-text" fill="#0284c7" text-anchor="middle">SPA CLIENT</text>
+    <!-- Top Status Badges -->
+    <g transform="translate(770, 13)">
+      <rect x="0" y="0" width="96" height="26" rx="6" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1"/>
+      <text x="48" y="17" font-size="10" font-weight="700" fill="#0284c7" text-anchor="middle">SPA CLIENT</text>
 
-      <rect x="108" y="0" width="112" height="26" rx="6" fill="#fff7ed" stroke="#ffedd5" stroke-width="1"/>
-      <text x="164" y="17" class="pill-text" fill="#ea580c" text-anchor="middle">FIREBASE BaaS</text>
+      <rect x="106" y="0" width="112" height="26" rx="6" fill="#fff7ed" stroke="#ffedd5" stroke-width="1"/>
+      <text x="162" y="17" font-size="10" font-weight="700" fill="#ea580c" text-anchor="middle">FIREBASE BaaS</text>
 
-      <rect x="228" y="0" width="128" height="26" rx="6" fill="#f0fdf4" stroke="#dcfce7" stroke-width="1"/>
-      <text x="292" y="17" class="pill-text" fill="#15803d" text-anchor="middle">GEMINI 3.5 FLASH</text>
+      <rect x="228" y="0" width="126" height="26" rx="6" fill="#f0fdf4" stroke="#dcfce7" stroke-width="1"/>
+      <text x="291" y="17" font-size="10" font-weight="700" fill="#15803d" text-anchor="middle">GEMINI 3.5 FLASH</text>
+
+      <rect x="364" y="0" width="116" height="26" rx="6" fill="#faf5ff" stroke="#f3e8ff" stroke-width="1"/>
+      <text x="422" y="17" font-size="10" font-weight="700" fill="#7c3aed" text-anchor="middle">GITHUB PAGES</text>
     </g>
   </g>
 
   <!-- ============================================================ -->
-  <!-- LAYER 1: USER CLIENTS LAYER -->
+  <!-- 1. LAYER 1: USER CLIENTS LAYER -->
   <!-- ============================================================ -->
-  <g transform="translate(50, 115)" class="font-sans">
-    <!-- Outer Container -->
-    <rect width="1140" height="85" rx="14" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5" filter="url(#softShadow)"/>
-    <text x="24" y="32" class="box-header" fill="#64748b">1. USER ACCESS &amp; ROLES</text>
-
-    <!-- Card: Siswa -->
-    <g transform="translate(220, 16)">
-      <rect width="280" height="52" rx="10" fill="#ffffff" stroke="#bae6fd" stroke-width="1.5" filter="url(#softShadow)"/>
-      <use href="#ico-student" x="12" y="10" />
-      <text x="52" y="24" class="card-title">Siswa SMK (Murid)</text>
-      <text x="52" y="40" class="card-desc">Simulasi 3D/2D, Tugas Praktik &amp; Kuis</text>
-    </g>
-
-    <!-- Card: Guru -->
-    <g transform="translate(525, 16)">
-      <rect width="280" height="52" rx="10" fill="#ffffff" stroke="#e9d5ff" stroke-width="1.5" filter="url(#softShadow)"/>
-      <use href="#ico-teacher" x="12" y="10" />
-      <text x="52" y="24" class="card-title">Guru Pengampu</text>
-      <text x="52" y="40" class="card-desc">Kelola Rombel, Materi, Tugas, &amp; Penilaian</text>
-    </g>
-
-    <!-- Card: Admin -->
-    <g transform="translate(830, 16)">
-      <rect width="280" height="52" rx="10" fill="#ffffff" stroke="#fbcfe8" stroke-width="1.5" filter="url(#softShadow)"/>
-      <use href="#ico-admin" x="12" y="10" />
-      <text x="52" y="24" class="card-title">Administrator Sekolah</text>
-      <text x="52" y="40" class="card-desc">Manajemen Akun Massal &amp; Rekap Sekolah</text>
-    </g>
-  </g>
-
-  <!-- Connector: Users to Frontend -->
-  <path d="M 620 200 L 620 240" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrBlue)"/>
-  <rect x="520" y="210" width="200" height="20" rx="4" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1"/>
-  <text x="620" y="224" class="flow-label" font-size="10" fill="#0284c7" text-anchor="middle">HTTPS Web Browser • Hash Routing ( #/ )</text>
-
-  <!-- ============================================================ -->
-  <!-- LAYER 2: FRONTEND CLIENT LAYER (React + Vite SPA) -->
-  <!-- ============================================================ -->
-  <g transform="translate(50, 245)" class="font-sans">
-    <!-- Big Card Container -->
-    <rect width="1140" height="370" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.8" filter="url(#cardShadow)"/>
+  <g transform="translate(50, 105)" class="font-sans">
+    <rect width="1200" height="78" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow-card)"/>
     
-    <!-- Top Bar with Official Logos -->
-    <rect x="0" y="0" width="1140" height="52" rx="16" fill="#f8fafc" />
-    <path d="M 0 36 L 0 52 L 1140 52 L 1140 36 Z" fill="#f8fafc" />
-    <line x1="0" y1="52" x2="1140" y2="52" stroke="#e2e8f0" stroke-width="1.5" />
+    <text x="24" y="44" font-size="12" font-weight="800" fill="#475569" letter-spacing="0.8px">1. PENGGUNA SISTEM</text>
 
-    <text x="24" y="32" class="box-header" fill="#0284c7">2. FRONTEND CLIENT LAYER (IN-BROWSER REACT SPA)</text>
-
-    <!-- Brand Logos on Header -->
-    <g transform="translate(850, 10)">
-      <!-- React Logo + text -->
-      <use href="#logo-react" x="0" y="0" />
-      <text x="36" y="21" class="card-title" font-size="13" fill="#087ea4">React 18</text>
-
-      <!-- Vite Logo + text -->
-      <use href="#logo-vite" x="110" y="0" />
-      <text x="146" y="21" class="card-title" font-size="13" fill="#646cff">Vite 5</text>
-
-      <!-- Three.js Logo + text -->
-      <use href="#logo-three" x="200" y="0" />
-      <text x="236" y="21" class="card-title" font-size="13" fill="#111827">Three.js</text>
+    <!-- User 1: Siswa -->
+    <g transform="translate(210, 13)">
+      <rect width="300" height="52" rx="8" fill="#ffffff" stroke="#bae6fd" stroke-width="1.2" filter="url(#shadow-card)"/>
+      <use href="#avatar-student" x="12" y="11" />
+      <text x="50" y="24" font-size="13" font-weight="700" fill="#0f172a">Siswa SMK (Murid)</text>
+      <text x="50" y="40" font-size="11" font-weight="400" fill="#64748b">Simulasi 3D/2D, Kerjakan Tugas &amp; Kuis</text>
     </g>
 
-    <!-- COLUMN 1: UI, ROUTING & CHATBOT -->
-    <g transform="translate(24, 70)">
-      <rect width="345" height="275" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2" />
-      <rect x="0" y="0" width="345" height="38" rx="12" fill="#f1f5f9" />
-      <path d="M 0 24 L 0 38 L 345 38 L 345 24 Z" fill="#f1f5f9" />
-      <text x="16" y="24" class="card-title" fill="#1e293b">UI, Routing &amp; AI Chatbot</text>
-      <circle cx="320" cy="19" r="4" fill="#0284c7"/>
-
-      <!-- Item 1.1 -->
-      <g transform="translate(14, 48)">
-        <rect width="317" height="46" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-        <text x="12" y="19" class="card-title" font-size="12">Hash Router (router.jsx)</text>
-        <text x="12" y="34" class="card-desc">Navigasi berbasis #/ (Bebas 404 di GitHub Pages)</text>
-      </g>
-
-      <!-- Item 1.2 -->
-      <g transform="translate(14, 102)">
-        <rect width="317" height="46" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-        <text x="12" y="19" class="card-title" font-size="12">Session Provider (session.jsx)</text>
-        <text x="12" y="34" class="card-desc">State sesi pengguna &amp; listener Auth Firebase</text>
-      </g>
-
-      <!-- Item 1.3 -->
-      <g transform="translate(14, 156)">
-        <rect width="317" height="48" rx="8" fill="#ffffff" stroke="#a7f3d0" stroke-width="1.2"/>
-        <use href="#logo-gemini" x="280" y="8" transform="scale(0.8)"/>
-        <text x="12" y="19" class="card-title" font-size="12" fill="#065f46">CNC-Bot AI Chat Widget</text>
-        <text x="12" y="34" class="card-desc">Tutor G-Code interaktif bertenaga Gemini 3.5</text>
-      </g>
-
-      <!-- Item 1.4 -->
-      <g transform="translate(14, 212)">
-        <rect width="317" height="46" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-        <text x="12" y="18" class="card-title" font-size="12">Client CSV Report Generator</text>
-        <text x="12" y="33" class="card-desc">Rekap nilai rombel diekspor langsung di browser</text>
-      </g>
+    <!-- User 2: Guru -->
+    <g transform="translate(540, 13)">
+      <rect width="310" height="52" rx="8" fill="#ffffff" stroke="#e9d5ff" stroke-width="1.2" filter="url(#shadow-card)"/>
+      <use href="#avatar-teacher" x="12" y="11" />
+      <text x="50" y="24" font-size="13" font-weight="700" fill="#0f172a">Guru Pengampu</text>
+      <text x="50" y="40" font-size="11" font-weight="400" fill="#64748b">Kelola Rombel, Modul, Tugas, &amp; Penilaian</text>
     </g>
 
-    <!-- COLUMN 2: 3D & 2D SIMULATOR -->
-    <g transform="translate(395, 70)">
-      <rect width="350" height="275" rx="12" fill="#f8fafc" stroke="#bae6fd" stroke-width="1.2" />
-      <rect x="0" y="0" width="350" height="38" rx="12" fill="#e0f2fe" />
-      <path d="M 0 24 L 0 38 L 350 38 L 350 24 Z" fill="#e0f2fe" />
-      <text x="16" y="24" class="card-title" fill="#0369a1">Interactive Lathe Simulator</text>
-      <use href="#logo-three" x="315" y="4" transform="scale(0.9)"/>
-
-      <!-- Item 2.1 -->
-      <g transform="translate(14, 48)">
-        <rect width="322" height="48" rx="8" fill="#ffffff" stroke="#7dd3fc" stroke-width="1"/>
-        <text x="12" y="19" class="card-title" font-size="12">Three.js 3D Viewport Engine</text>
-        <text x="12" y="34" class="card-desc">Spindle 3-Jaw, Tailstock, Turret, Coolant &amp; Sparks</text>
-      </g>
-
-      <!-- Item 2.2 -->
-      <g transform="translate(14, 104)">
-        <rect width="322" height="46" rx="8" fill="#ffffff" stroke="#7dd3fc" stroke-width="1"/>
-        <use href="#logo-canvas" x="285" y="8" transform="scale(0.8)"/>
-        <text x="12" y="19" class="card-title" font-size="12">Canvas 2D Control Panel</text>
-        <text x="12" y="34" class="card-desc">Panel GreaMaT, live toolpath X/Z, batas chuck</text>
-      </g>
-
-      <!-- Item 2.3 -->
-      <g transform="translate(14, 158)">
-        <rect width="322" height="46" rx="8" fill="#ffffff" stroke="#7dd3fc" stroke-width="1"/>
-        <text x="12" y="19" class="card-title" font-size="12">G-Code Editor &amp; Tokenizer</text>
-        <text x="12" y="34" class="card-desc">Pewarnaan sintaks edukatif: G00/G01/G02/G03/M03</text>
-      </g>
-
-      <!-- Item 2.4 -->
-      <g transform="translate(14, 212)">
-        <rect width="322" height="46" rx="8" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
-        <text x="12" y="18" class="card-title" font-size="12" fill="#991b1b">Auto-Stop Crash Safety Alarm</text>
-        <text x="12" y="33" class="card-desc" fill="#b91c1c">Pencegahan tabrakan pahat dengan benda/chuck</text>
-      </g>
-    </g>
-
-    <!-- COLUMN 3: G-CODE ENGINE & VIRTUAL API -->
-    <g transform="translate(770, 70)">
-      <rect width="345" height="275" rx="12" fill="#fffbeb" stroke="#fde68a" stroke-width="1.2" />
-      <rect x="0" y="0" width="345" height="38" rx="12" fill="#fef3c7" />
-      <path d="M 0 24 L 0 38 L 345 38 L 345 24 Z" fill="#fef3c7" />
-      <text x="16" y="24" class="card-title" fill="#92400e">In-Browser G-Code Engine &amp; API</text>
-      <circle cx="320" cy="19" r="4" fill="#d97706"/>
-
-      <!-- Item 3.1 -->
-      <g transform="translate(14, 48)">
-        <rect width="317" height="46" rx="8" fill="#ffffff" stroke="#fcd34d" stroke-width="1"/>
-        <text x="12" y="19" class="card-title" font-size="12">Kinematic Parser (parseGCode)</text>
-        <text x="12" y="34" class="card-desc">Evaluasi G90/G91, diameter X, busur I/K &amp; R</text>
-      </g>
-
-      <!-- Item 3.2 -->
-      <g transform="translate(14, 102)">
-        <rect width="317" height="46" rx="8" fill="#ffffff" stroke="#fcd34d" stroke-width="1"/>
-        <text x="12" y="19" class="card-title" font-size="12">Auto-Grader (compareTarget)</text>
-        <text x="12" y="34" class="card-desc">Komparasi profil &#177;0.5 mm &amp; skor otomatis 0-100</text>
-      </g>
-
-      <!-- Item 3.3 -->
-      <g transform="translate(14, 156)">
-        <rect width="317" height="48" rx="8" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5"/>
-        <text x="12" y="19" class="card-title" font-size="12" fill="#b45309">firebaseApi.js (Virtual Serverless Router)</text>
-        <text x="12" y="34" class="card-desc">Menggantikan 100% PHP REST API ke Firestore</text>
-      </g>
-
-      <!-- Item 3.4 -->
-      <g transform="translate(14, 212)">
-        <rect width="317" height="46" rx="8" fill="#ffffff" stroke="#fcd34d" stroke-width="1"/>
-        <text x="12" y="18" class="card-title" font-size="12">Auto Database Seeder</text>
-        <text x="12" y="33" class="card-desc">Auto-seed Modul Level 1-4, Rombel, &amp; Kuis</text>
-      </g>
+    <!-- User 3: Admin -->
+    <g transform="translate(880, 13)">
+      <rect width="295" height="52" rx="8" fill="#ffffff" stroke="#fbcfe8" stroke-width="1.2" filter="url(#shadow-card)"/>
+      <use href="#avatar-admin" x="12" y="11" />
+      <text x="50" y="24" font-size="13" font-weight="700" fill="#0f172a">Administrator Sekolah</text>
+      <text x="50" y="40" font-size="11" font-weight="400" fill="#64748b">Manajemen Akun Massal &amp; Rekap Sekolah</text>
     </g>
   </g>
 
-  <!-- ============================================================ -->
-  <!-- LAYER 3: CLOUD SERVICES & INFRASTRUCTURE (BaaS) -->
-  <!-- ============================================================ -->
+  <!-- Flow 1 to 2 -->
+  <path d="M 650 183 L 650 220" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4,4" marker-end="arrow-blue"/>
+  <rect x="525" y="193" width="250" height="20" rx="4" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1"/>
+  <text x="650" y="207" class="font-sans" font-size="10" font-weight="600" fill="#0284c7" text-anchor="middle">HTTPS Web Browser • Hash Routing ( #/ )</text>
 
-  <!-- Left: GITHUB PAGES & ACTIONS -->
-  <g transform="translate(50, 660)" class="font-sans">
-    <rect width="330" height="230" rx="14" fill="#ffffff" stroke="#c084fc" stroke-width="1.6" filter="url(#cardShadow)"/>
+  <!-- ============================================================ -->
+  <!-- 2. LAYER 2: FRONTEND CLIENT LAYER (React + Vite SPA) -->
+  <!-- ============================================================ -->
+  <g transform="translate(50, 225)" class="font-sans">
+    <!-- Big Frame -->
+    <rect width="1200" height="390" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.8" filter="url(#shadow-elevated)"/>
     
-    <!-- Header -->
-    <rect x="0" y="0" width="330" height="42" rx="14" fill="#faf5ff"/>
-    <path d="M 0 28 L 0 42 L 330 42 L 330 28 Z" fill="#faf5ff"/>
-    <line x1="0" y1="42" x2="330" y2="42" stroke="#f3e8ff" stroke-width="1"/>
+    <!-- Header of Frontend Box -->
+    <rect x="0" y="0" width="1200" height="50" rx="14" fill="#f8fafc" />
+    <path d="M 0 35 L 0 50 L 1200 50 L 1200 35 Z" fill="#f8fafc" />
+    <line x1="0" y1="50" x2="1200" y2="50" stroke="#e2e8f0" stroke-width="1.5" />
 
-    <use href="#logo-github" x="16" y="6" />
-    <text x="56" y="27" class="card-title" font-size="14" fill="#6b21a8">GitHub Pages &amp; CI/CD</text>
+    <text x="24" y="31" font-size="13" font-weight="800" fill="#0284c7" letter-spacing="0.8px">2. FRONTEND CLIENT LAYER (REACT 18 + VITE SPA • IN-BROWSER)</text>
 
-    <!-- Sub items -->
-    <g transform="translate(16, 54)">
-      <rect width="298" height="46" rx="8" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1"/>
-      <text x="12" y="18" class="card-title" font-size="12">GitHub Actions CI/CD Pipeline</text>
-      <text x="12" y="34" class="code-tag font-mono" fill="#7c3aed">.github/workflows/deploy.yml</text>
+    <!-- Header Tech Logos on the Right -->
+    <g transform="translate(860, 11)">
+      <!-- React -->
+      <use href="#logo-react" x="0" y="2" />
+      <text x="34" y="21" font-size="13" font-weight="700" fill="#087ea4">React 18</text>
+
+      <!-- Vite -->
+      <use href="#logo-vite" x="115" y="1" />
+      <text x="148" y="21" font-size="13" font-weight="700" fill="#646cff">Vite 5</text>
+
+      <!-- Three.js -->
+      <use href="#logo-three" x="210" y="2" />
+      <text x="244" y="21" font-size="13" font-weight="700" fill="#0f172a">Three.js</text>
     </g>
 
-    <g transform="translate(16, 108)">
-      <rect width="298" height="46" rx="8" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1"/>
-      <text x="12" y="18" class="card-title" font-size="12">Automated Build &amp; Deploy</text>
-      <text x="12" y="33" class="card-desc">Trigger: push main &#8594; npm ci &#8594; vite build</text>
+    <!-- COLUMN 1: UI & Navigation (Width: 366, x: 24) -->
+    <g transform="translate(24, 68)">
+      <rect width="366" height="300" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2" />
+      <rect x="0" y="0" width="366" height="36" rx="10" fill="#f1f5f9" />
+      <path d="M 0 22 L 0 36 L 366 36 L 366 22 Z" fill="#f1f5f9" />
+      <text x="16" y="23" font-size="13" font-weight="700" fill="#1e293b">UI, Navigasi &amp; AI Chatbot</text>
+      <circle cx="346" cy="18" r="4" fill="#0284c7" />
+
+      <!-- Item 1 -->
+      <g transform="translate(14, 46)">
+        <rect width="338" height="52" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+        <text x="12" y="20" font-size="12" font-weight="700" fill="#0f172a">Hash Router (router.jsx)</text>
+        <text x="12" y="36" font-size="11" font-weight="400" fill="#64748b">Navigasi rute #/ (Bebas error 404 di GitHub Pages)</text>
+      </g>
+      <!-- Item 2 -->
+      <g transform="translate(14, 108)">
+        <rect width="338" height="52" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+        <text x="12" y="20" font-size="12" font-weight="700" fill="#0f172a">Session Provider (session.jsx)</text>
+        <text x="12" y="36" font-size="11" font-weight="400" fill="#64748b">Sinkronisasi status login &amp; profil hak akses role</text>
+      </g>
+      <!-- Item 3 -->
+      <g transform="translate(14, 170)">
+        <rect width="338" height="54" rx="6" fill="#ffffff" stroke="#a7f3d0" stroke-width="1.2"/>
+        <text x="12" y="20" font-size="12" font-weight="700" fill="#065f46">CNC-Bot AI Chat Widget</text>
+        <text x="12" y="37" font-size="11" font-weight="400" fill="#64748b">Tutor interaktif bertenaga Gemini 3.5 Flash-Lite</text>
+      </g>
+      <!-- Item 4 -->
+      <g transform="translate(14, 234)">
+        <rect width="338" height="52" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+        <text x="12" y="20" font-size="12" font-weight="700" fill="#0f172a">Client CSV Report Generator</text>
+        <text x="12" y="36" font-size="11" font-weight="400" fill="#64748b">Ekspor data rekap nilai kelas langsung di browser</text>
+      </g>
     </g>
 
-    <g transform="translate(16, 162)">
-      <rect width="298" height="52" rx="8" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1"/>
-      <text x="12" y="18" class="card-title" font-size="12">Static Hosting Global CDN</text>
-      <text x="12" y="36" class="code-tag font-mono" font-size="11" fill="#7c3aed">https://zrinfa.github.io/SiNC/</text>
+    <!-- COLUMN 2: 3D & 2D Simulator (Width: 376, x: 412) -->
+    <g transform="translate(412, 68)">
+      <rect width="376" height="300" rx="10" fill="#f8fafc" stroke="#bae6fd" stroke-width="1.2" />
+      <rect x="0" y="0" width="376" height="36" rx="10" fill="#e0f2fe" />
+      <path d="M 0 22 L 0 36 L 376 36 L 376 22 Z" fill="#e0f2fe" />
+      <text x="16" y="23" font-size="13" font-weight="700" fill="#0369a1">Interactive Lathe Simulator</text>
+      <circle cx="356" cy="18" r="4" fill="#0284c7" />
+
+      <!-- Item 1 -->
+      <g transform="translate(14, 46)">
+        <rect width="348" height="52" rx="6" fill="#ffffff" stroke="#7dd3fc" stroke-width="1"/>
+        <text x="12" y="20" font-size="12" font-weight="700" fill="#0f172a">Three.js 3D Viewport Mesin</text>
+        <text x="12" y="36" font-size="11" font-weight="400" fill="#64748b">Spindle 3-Jaw, Tailstock, Turret, Coolant &amp; Sparks</text>
+      </g>
+      <!-- Item 2 -->
+      <g transform="translate(14, 108)">
+        <rect width="348" height="52" rx="6" fill="#ffffff" stroke="#7dd3fc" stroke-width="1"/>
+        <text x="12" y="20" font-size="12" font-weight="700" fill="#0f172a">Canvas 2D Control Panel</text>
+        <text x="12" y="36" font-size="11" font-weight="400" fill="#64748b">Layout GreaMaT, live toolpath X/Z &amp; batas chuck</text>
+      </g>
+      <!-- Item 3 -->
+      <g transform="translate(14, 170)">
+        <rect width="348" height="52" rx="6" fill="#ffffff" stroke="#7dd3fc" stroke-width="1"/>
+        <text x="12" y="20" font-size="12" font-weight="700" fill="#0f172a">G-Code Editor &amp; Tokenizer</text>
+        <text x="12" y="36" font-size="11" font-weight="400" fill="#64748b">Highlight sintaks: G00/G01/G02/G03/M03/F/S</text>
+      </g>
+      <!-- Item 4 -->
+      <g transform="translate(14, 234)">
+        <rect width="348" height="52" rx="6" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.2"/>
+        <text x="12" y="20" font-size="12" font-weight="700" fill="#991b1b">Auto-Stop Crash Safety Alarm</text>
+        <text x="12" y="36" font-size="11" font-weight="500" fill="#b91c1c">Pencegahan tabrakan pahat dengan benda/chuck</text>
+      </g>
+    </g>
+
+    <!-- COLUMN 3: G-Code Engine & Virtual API (Width: 366, x: 810) -->
+    <g transform="translate(810, 68)">
+      <rect width="366" height="300" rx="10" fill="#fffbeb" stroke="#fde68a" stroke-width="1.2" />
+      <rect x="0" y="0" width="366" height="36" rx="10" fill="#fef3c7" />
+      <path d="M 0 22 L 0 36 L 366 36 L 366 22 Z" fill="#fef3c7" />
+      <text x="16" y="23" font-size="13" font-weight="700" fill="#92400e">G-Code Engine &amp; Virtual API</text>
+      <circle cx="346" cy="18" r="4" fill="#d97706" />
+
+      <!-- Item 1 -->
+      <g transform="translate(14, 46)">
+        <rect width="338" height="52" rx="6" fill="#ffffff" stroke="#fcd34d" stroke-width="1"/>
+        <text x="12" y="20" font-size="12" font-weight="700" fill="#0f172a">Kinematic Parser (parseGCode)</text>
+        <text x="12" y="36" font-size="11" font-weight="400" fill="#64748b">Evaluasi sistem G90/G91, diameter X, busur I/K &amp; R</text>
+      </g>
+      <!-- Item 2 -->
+      <g transform="translate(14, 108)">
+        <rect width="338" height="52" rx="6" fill="#ffffff" stroke="#fcd34d" stroke-width="1"/>
+        <text x="12" y="20" font-size="12" font-weight="700" fill="#0f172a">Auto-Grader (compareTarget)</text>
+        <text x="12" y="36" font-size="11" font-weight="400" fill="#64748b">Komparasi profil radius target &amp; skor 0-100</text>
+      </g>
+      <!-- Item 3 -->
+      <g transform="translate(14, 170)">
+        <rect width="338" height="54" rx="6" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5"/>
+        <text x="12" y="19" font-size="12" font-weight="700" fill="#b45309">firebaseApi.js (Virtual Serverless Router)</text>
+        <text x="12" y="36" font-size="11" font-weight="400" fill="#64748b">Menggantikan 100% PHP API ke Firestore &amp; Storage</text>
+      </g>
+      <!-- Item 4 -->
+      <g transform="translate(14, 234)">
+        <rect width="338" height="52" rx="6" fill="#ffffff" stroke="#fcd34d" stroke-width="1"/>
+        <text x="12" y="20" font-size="12" font-weight="700" fill="#0f172a">Auto Database Seeder</text>
+        <text x="12" y="36" font-size="11" font-weight="400" fill="#64748b">Inisialisasi otomatis Modul L1-L4, Rombel, &amp; Soal</text>
+      </g>
     </g>
   </g>
 
-  <!-- Center: GOOGLE FIREBASE PLATFORM -->
-  <g transform="translate(410, 660)" class="font-sans">
-    <rect width="470" height="230" rx="14" fill="#ffffff" stroke="#fb923c" stroke-width="1.6" filter="url(#cardShadow)"/>
+  <!-- ============================================================ -->
+  <!-- CONNECTORS: FLOW FROM CLIENT TO CLOUD (No Overlaps) -->
+  <!-- ============================================================ -->
+  <!-- Flow 1: Client to GitHub -->
+  <path d="M 230 615 L 230 668" fill="none" stroke="#7c3aed" stroke-width="2" marker-end="arrow-purple"/>
+  <rect x="135" y="632" width="190" height="20" rx="4" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1"/>
+  <text x="230" y="646" class="font-sans" font-size="10" font-weight="700" fill="#7c3aed" text-anchor="middle">Git Push to Main (Auto CI/CD)</text>
+
+  <!-- Flow 2: Client to Firebase -->
+  <path d="M 650 615 L 650 668" fill="none" stroke="#ea580c" stroke-width="2" marker-end="arrow-orange"/>
+  <rect x="520" y="632" width="260" height="20" rx="4" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
+  <text x="650" y="646" class="font-sans" font-size="10" font-weight="700" fill="#c2410c" text-anchor="middle">Firebase SDK v11 (WebSocket &amp; REST)</text>
+
+  <!-- Flow 3: Client to Gemini -->
+  <path d="M 1090 615 L 1090 668" fill="none" stroke="#059669" stroke-width="2" marker-end="arrow-green"/>
+  <rect x="990" y="632" width="200" height="20" rx="4" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="1090" y="646" class="font-sans" font-size="10" font-weight="700" fill="#047857" text-anchor="middle">REST API generateContent</text>
+
+  <!-- ============================================================ -->
+  <!-- 3. LAYER 3: CLOUD SERVICES & INFRASTRUCTURE -->
+  <!-- ============================================================ -->
+
+  <!-- CARD 1: GITHUB PAGES & ACTIONS (x: 50, w: 355) -->
+  <g transform="translate(50, 670)" class="font-sans">
+    <rect width="355" height="245" rx="14" fill="#ffffff" stroke="#c084fc" stroke-width="1.6" filter="url(#shadow-elevated)"/>
     
     <!-- Header -->
-    <rect x="0" y="0" width="470" height="42" rx="14" fill="#fff7ed"/>
-    <path d="M 0 28 L 0 42 L 470 42 L 470 28 Z" fill="#fff7ed"/>
-    <line x1="0" y1="42" x2="470" y2="42" stroke="#ffedd5" stroke-width="1"/>
+    <rect x="0" y="0" width="355" height="46" rx="14" fill="#faf5ff"/>
+    <path d="M 0 30 L 0 46 L 355 46 L 355 30 Z" fill="#faf5ff"/>
+    <line x1="0" y1="46" x2="355" y2="46" stroke="#f3e8ff" stroke-width="1"/>
 
-    <use href="#logo-firebase" x="16" y="5" />
-    <text x="56" y="27" class="card-title" font-size="14" fill="#c2410c">Google Firebase (Serverless BaaS)</text>
+    <use href="#logo-github" x="16" y="9" />
+    <text x="54" y="29" font-size="14" font-weight="700" fill="#6b21a8">GitHub Pages &amp; CI/CD</text>
 
     <!-- Sub items -->
-    <g transform="translate(16, 54)">
-      <rect width="438" height="46" rx="8" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
-      <text x="14" y="18" class="card-title" font-size="12">Firebase Authentication</text>
-      <text x="14" y="34" class="card-desc">Email/Password (Auto-create demo accounts) &amp; Google OAuth</text>
+    <g transform="translate(14, 58)">
+      <rect width="327" height="48" rx="6" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1"/>
+      <text x="12" y="19" font-size="12" font-weight="700" fill="#0f172a">GitHub Actions Pipeline</text>
+      <text x="12" y="35" class="font-mono" font-size="11" font-weight="600" fill="#7c3aed">.github/workflows/deploy.yml</text>
     </g>
 
-    <g transform="translate(16, 108)">
-      <rect width="438" height="54" rx="8" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
-      <text x="14" y="18" class="card-title" font-size="12">Cloud Firestore (NoSQL Document Database)</text>
-      <text x="14" y="34" class="code-tag font-mono" fill="#c2410c">users • kelas • modul • materi • tugas • soal • pengumpulan</text>
-      <text x="14" y="47" class="code-tag font-mono" fill="#c2410c">percobaan • program_tersimpan • settings/ai_config</text>
+    <g transform="translate(14, 116)">
+      <rect width="327" height="48" rx="6" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1"/>
+      <text x="12" y="19" font-size="12" font-weight="700" fill="#0f172a">Automated Build &amp; Deploy</text>
+      <text x="12" y="35" font-size="11" font-weight="400" fill="#64748b">Trigger: push main -> npm ci -> vite build</text>
     </g>
 
-    <g transform="translate(16, 170)">
-      <rect width="438" height="44" rx="8" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
-      <text x="14" y="18" class="card-title" font-size="12">Firebase Cloud Storage</text>
-      <text x="14" y="33" class="card-desc">Upload lembar kerja LKPD PDF, jobsheet tugas, &amp; lampiran materi</text>
+    <g transform="translate(14, 174)">
+      <rect width="327" height="54" rx="6" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1"/>
+      <text x="12" y="19" font-size="12" font-weight="700" fill="#0f172a">Live Static CDN Hosting</text>
+      <text x="12" y="37" class="font-mono" font-size="11" font-weight="600" fill="#7c3aed">https://zrinfa.github.io/SiNC/</text>
     </g>
   </g>
 
-  <!-- Right: GOOGLE GEMINI AI STUDIO -->
-  <g transform="translate(910, 660)" class="font-sans">
-    <rect width="280" height="230" rx="14" fill="#ffffff" stroke="#34d399" stroke-width="1.6" filter="url(#cardShadow)"/>
+  <!-- CARD 2: GOOGLE FIREBASE PLATFORM (x: 430, w: 490) -->
+  <g transform="translate(430, 670)" class="font-sans">
+    <rect width="490" height="245" rx="14" fill="#ffffff" stroke="#fb923c" stroke-width="1.6" filter="url(#shadow-elevated)"/>
     
     <!-- Header -->
-    <rect x="0" y="0" width="280" height="42" rx="14" fill="#f0fdf4"/>
-    <path d="M 0 28 L 0 42 L 280 42 L 280 28 Z" fill="#f0fdf4"/>
-    <line x1="0" y1="42" x2="280" y2="42" stroke="#dcfce7" stroke-width="1"/>
+    <rect x="0" y="0" width="490" height="46" rx="14" fill="#fff7ed"/>
+    <path d="M 0 30 L 0 46 L 490 46 L 490 30 Z" fill="#fff7ed"/>
+    <line x1="0" y1="46" x2="490" y2="46" stroke="#ffedd5" stroke-width="1"/>
 
-    <use href="#logo-gemini" x="14" y="5" />
-    <text x="56" y="27" class="card-title" font-size="14" fill="#15803d">Google AI Studio</text>
+    <use href="#logo-firebase" x="16" y="8" />
+    <text x="54" y="29" font-size="14" font-weight="700" fill="#c2410c">Google Firebase (Serverless BaaS)</text>
 
     <!-- Sub items -->
-    <g transform="translate(16, 54)">
-      <rect width="248" height="46" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
-      <text x="12" y="18" class="card-title" font-size="12">Gemini 3.5 Flash-Lite</text>
-      <text x="12" y="34" class="code-tag font-mono" fill="#15803d">gemini-flash-lite-latest</text>
+    <g transform="translate(16, 58)">
+      <rect width="458" height="48" rx="6" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
+      <text x="14" y="19" font-size="12" font-weight="700" fill="#0f172a">Firebase Authentication</text>
+      <text x="14" y="35" font-size="11" font-weight="400" fill="#64748b">Email/Password (Auto demo account creation) &amp; Google OAuth</text>
     </g>
 
-    <g transform="translate(16, 108)">
-      <rect width="248" height="48" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
-      <text x="12" y="18" class="card-title" font-size="12">Dynamic Config from Firestore</text>
-      <text x="12" y="33" class="card-desc">API Key &amp; model didapat otomatis</text>
+    <g transform="translate(16, 116)">
+      <rect width="458" height="56" rx="6" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
+      <text x="14" y="19" font-size="12" font-weight="700" fill="#0f172a">Cloud Firestore (NoSQL Document Store)</text>
+      <text x="14" y="34" class="font-mono" font-size="10.5" font-weight="600" fill="#c2410c">users • kelas • modul • materi • tugas • soal • pengumpulan</text>
+      <text x="14" y="47" class="font-mono" font-size="10.5" font-weight="600" fill="#c2410c">percobaan • program_tersimpan • settings/ai_config</text>
     </g>
 
-    <g transform="translate(16, 164)">
-      <rect width="248" height="50" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
-      <text x="12" y="18" class="card-title" font-size="12">Role-Aware AI Tutor</text>
-      <text x="12" y="33" class="card-desc">Bimbingan siswa &amp; asisten guru</text>
+    <g transform="translate(16, 180)">
+      <rect width="458" height="48" rx="6" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
+      <text x="14" y="19" font-size="12" font-weight="700" fill="#0f172a">Firebase Cloud Storage</text>
+      <text x="14" y="35" font-size="11" font-weight="400" fill="#64748b">Upload lembar kerja LKPD PDF, jobsheet, &amp; lampiran materi</text>
+    </g>
+  </g>
+
+  <!-- CARD 3: GOOGLE GEMINI AI STUDIO (x: 945, w: 305) -->
+  <g transform="translate(945, 670)" class="font-sans">
+    <rect width="305" height="245" rx="14" fill="#ffffff" stroke="#34d399" stroke-width="1.6" filter="url(#shadow-elevated)"/>
+    
+    <!-- Header -->
+    <rect x="0" y="0" width="305" height="46" rx="14" fill="#f0fdf4"/>
+    <path d="M 0 30 L 0 46 L 305 46 L 305 30 Z" fill="#f0fdf4"/>
+    <line x1="0" y1="46" x2="305" y2="46" stroke="#dcfce7" stroke-width="1"/>
+
+    <use href="#logo-gemini" x="14" y="8" />
+    <text x="52" y="29" font-size="14" font-weight="700" fill="#15803d">Google AI Studio</text>
+
+    <!-- Sub items -->
+    <g transform="translate(14, 58)">
+      <rect width="277" height="48" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+      <text x="12" y="19" font-size="12" font-weight="700" fill="#0f172a">Gemini 3.5 Flash-Lite</text>
+      <text x="12" y="35" class="font-mono" font-size="11" font-weight="600" fill="#15803d">gemini-flash-lite-latest</text>
+    </g>
+
+    <g transform="translate(14, 116)">
+      <rect width="277" height="48" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+      <text x="12" y="19" font-size="12" font-weight="700" fill="#0f172a">Dynamic Firestore Config</text>
+      <text x="12" y="35" font-size="11" font-weight="400" fill="#64748b">Key &amp; model didapat otomatis</text>
+    </g>
+
+    <g transform="translate(14, 174)">
+      <rect width="277" height="54" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+      <text x="12" y="19" font-size="12" font-weight="700" fill="#0f172a">Role-Aware AI Tutor</text>
+      <text x="12" y="35" font-size="11" font-weight="400" fill="#64748b">Bimbingan siswa &amp; asisten guru</text>
     </g>
   </g>
 
   <!-- ============================================================ -->
-  <!-- CONNECTORS (FLOW ARROWS BETWEEN CLIENT & CLOUD) -->
+  <!-- 4. FOOTER SECTION -->
   <!-- ============================================================ -->
-  <!-- Client to GitHub Pages -->
-  <path d="M 215 615 L 215 660" fill="none" stroke="#a855f7" stroke-width="2.2" marker-end="url(#arrPurple)"/>
-  
-  <!-- Client to Firebase -->
-  <path d="M 645 615 L 645 660" fill="none" stroke="#ea580c" stroke-width="2.2" marker-end="url(#arrOrange)"/>
-  <rect x="540" y="628" width="210" height="18" rx="4" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
-  <text x="645" y="641" class="font-sans" font-size="10" font-weight="700" fill="#c2410c" text-anchor="middle">Firebase SDK v11 (WebSocket / REST)</text>
-
-  <!-- Client to Gemini AI -->
-  <path d="M 1050 615 L 1050 660" fill="none" stroke="#059669" stroke-width="2.2" marker-end="url(#arrGreen)"/>
-  <rect x="970" y="628" width="160" height="18" rx="4" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
-  <text x="1050" y="641" class="font-sans" font-size="10" font-weight="700" fill="#047857" text-anchor="middle">REST generateContent</text>
-
-  <!-- ============================================================ -->
-  <!-- FOOTER BAR -->
-  <!-- ============================================================ -->
-  <g transform="translate(50, 920)" class="font-sans">
-    <line x1="0" y1="0" x2="1140" y2="0" stroke="#e2e8f0" stroke-width="1" />
-    <text x="0" y="20" font-size="11" font-weight="500" fill="#94a3b8">SiNC: Simulator Mesin Bubut CNC SMK • Logicodix 2026 • Arsitektur Serverless Modern</text>
-    <text x="1140" y="20" font-size="11" font-weight="700" fill="#0284c7" text-anchor="end">Live URL: https://zrinfa.github.io/SiNC/</text>
+  <g transform="translate(50, 935)" class="font-sans">
+    <line x1="0" y1="0" x2="1200" y2="0" stroke="#e2e8f0" stroke-width="1.2" />
+    <text x="0" y="24" font-size="11" font-weight="500" fill="#64748b">SiNC: Simulator Mesin Bubut CNC SMK • Logicodix 2026 • Full Serverless Architecture</text>
+    <text x="1200" y="24" font-size="11" font-weight="700" fill="#0284c7" text-anchor="end">Live Web: https://zrinfa.github.io/SiNC/</text>
   </g>
 </svg>
